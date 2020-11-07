@@ -26,7 +26,8 @@ export class AdsService{
   getAllAds(): Observable<Ad[]> {
     return this.http.get<Ad[]>(`https://mitlg.herokuapp.com/ad/all/`).pipe(tap(ads => this.ads = ads));
   }
-  getAd(id: number): Observable<Ad>{
+
+  getAd(id: string): Observable<Ad>{
     return this.http.get<Ad>(`https://mitlg.herokuapp.com/ad/` + id);
   }
 

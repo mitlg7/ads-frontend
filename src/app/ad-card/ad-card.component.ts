@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AdsService} from '../service/ads.service';
+import {Ad, AdsService} from '../service/ads.service';
 import {delay} from 'rxjs/operators';
 
 @Component({
