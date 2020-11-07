@@ -1,0 +1,22 @@
+<div *ngIf="!loading">
+  <div class="card-columns" *ngIf="adsService.ads.length; else empty">
+    <div *ngFor="let ad of adsService.ads" class="card text-white bg-dark m-1 mb-3" style="width: 18rem;">
+      <img class="card-img-top" src="https://artmisto.com/uploads/posts/2012-09/1346589125_stock-prophet.jpg" alt="Film preview">
+      <div class="card-body">
+        <h5 class="card-title">{{ad.name}} </h5>
+        <br/>
+        <a>Тип: {{ad.adType}} </a> <br/>
+        <h4>Категория: {{ad.adCategory}}</h4>
+        <a routerLink="/ad/{{ad.id}}" class="btn btn-primary">Открыть</a>
+      </div>
+    </div>
+  </div>
+</div>
+<h3 *ngIf="loading">
+  Загрузка...
+</h3>
+<ng-template #empty>
+  <div>
+    <h3>Объявлений нет!</h3>
+  </div>
+</ng-template>
