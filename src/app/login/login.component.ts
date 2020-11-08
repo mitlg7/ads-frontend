@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     const formData: any = new FormData();
     formData.append('username', this.formLogin.get(`username`).value);
     formData.append('password', this.formLogin.get(`password`).value);
-    // TODO FIXME
+    // TODO
     // this.http.post('https://mitlg.herokuapp.com/ad', formData).subscribe(
 
 }

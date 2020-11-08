@@ -31,9 +31,8 @@ export class AdsService{
     return this.http.get<Ad>(`https://mitlg.herokuapp.com/ad/` + id);
   }
 
-
-  loadAds(): void{
-
+  getAdsByUserId(id: string): Observable<Ad[]>{
+    return null;
   }
 
 }
