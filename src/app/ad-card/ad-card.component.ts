@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Ad, AdsService} from '../service/ads.service';
 import {delay} from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ad-card',
@@ -11,14 +13,32 @@ export class AdCardComponent implements OnInit {
 
   public loading = true;
 
-  constructor(private adsService: AdsService ) { }
+  constructor(private router: Router,
+              public adsService: AdsService,
+              private titleService: Title
+  ) { }
 
   ngOnInit(): void {
-    this.adsService.getAllAds()
-      .pipe(delay(2000))
-      .subscribe(() => {
-        this.loading = false;
-      });
+    this.titleService.setTitle('Alito 64');
+     // FIXME Сделать норм парсинг сеарч
+    if (this.router.url.indexOf('search') != -1){
+      const query = this.router.url.split('name=').pop();
+      this.adsService.getAdBySearch(query)
+        .pipe()
+        .subscribe(
+          () => this.loading = false
+        );
+    }else {
+      this.adsService.getAllAds()
+        .pipe(delay(750))
+        .subscribe(() => {
+          this.loading = false;
+        });
+    }
+  }
+  search(): void{
+    this.loading = true;
+    this.adsService.getAdBySearch('e').pipe().subscribe(() => this.loading = false );
   }
 
 }

@@ -10,4 +10,8 @@ export class UserService{
   getUserById(id: string): Observable<User>{
     return null;
   }
+  getAllUsers(): Observable<User[]>{
+    return null;
+  }
+
 }

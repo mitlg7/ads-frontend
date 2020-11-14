@@ -1,3 +1,13 @@
+<div class="container">
+  <div class="input-group">
+    <input type="search" class="form-control" name="searchQuery"  id="search-input" autofocus="autofocus">
+    <div class="input-group-append">
+      <button class="btn btn-primary" (click)="search()" type="submit">Поиск</button>
+      {{adsService.ads.length}}
+    </div>
+  </div>
+</div>
+
 <div *ngIf="!loading">
   <div class="card-columns" *ngIf="adsService.ads.length; else empty">
     <div *ngFor="let ad of adsService.ads" class="card text-white bg-dark m-1 mb-3" style="width: 18rem;">

@@ -1,0 +1,31 @@
+<div class="container">
+  <div *ngIf="adsService.ads.length">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>USER OWNER</th>
+        <th>STATUS</th>
+        <th>PRICE</th>
+        <th>TODO</th>
+
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let ad of adsService.ads">
+        <td scope="row">{{ad.id}}</td>
+        <td>{{ad.name.slice(0,32)}}</td>
+        <td>{{ad.userId}}</td>
+        <td>{{ad.adStatus}}</td>
+        <td>{{ad.cost}}</td>
+        <td>
+          <button class="btn btn-danger" type="button" (click)="delete(ad.id)" >X</button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

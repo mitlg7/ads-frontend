@@ -14,8 +14,11 @@ import { CreateAdComponent } from './create-ad/create-ad.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AdminComponent } from './admin/admin.component';
 
 const appRoutes: Routes = [
+  {path: 'admin', component: AdminComponent},
+  {path: 'search', component: HomeComponent},
   {path: '', component: HomeComponent},
   {path: 'ad/:id', component: AdPageComponent},
   {path: 'user/:id', component: UserPageComponent},
@@ -37,7 +40,8 @@ const appRoutes: Routes = [
     NotFoundComponent,
     CreateAdComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

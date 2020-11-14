@@ -1,6 +1,24 @@
-
-{{ad.name}}
-
-{{ad.cost}}
-
-{{ad.adCategory}}
+<div class="container row">
+  <div class="container col">
+    <img src="">
+  </div>
+  <div class="container col">
+    <p><span><a href="">{{ad.adCategory}} </a></span><span> / </span><span><a href="">{{ad.adType}}</a></span></p>
+    <h3 class="my-5">{{ad.name}}</h3>
+    <span class="">Цена:{{ad.cost}} ₽</span><br>
+    <button class="btn btn-primary btn-lg m-5" type="submit">Откликнуться!</button>{{ad.adStatus}}
+  </div>
+  <div class="container" >
+    <div>
+      Дата публикаци:
+      <span>{{ad.date}}</span>
+    </div>
+    <div>Описание:
+      <span>{{ad.description}}</span>
+    </div>
+    <div>
+      Адресс:
+      <span>{{ad.address}}</span>
+    </div>
+  </div>
+</div>

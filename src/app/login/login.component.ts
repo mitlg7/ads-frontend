@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   constructor(
     public fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private titleService: Title
   ) {
     this.formLogin = this.fb.group({
       username: [``],
@@ -20,6 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Авторизация');
   }
 
   auth(): void {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-ad',
@@ -8,11 +9,12 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./create-ad.component.css']
 })
 export class CreateAdComponent implements OnInit {
-
+  files: any;
   form: FormGroup;
   constructor(
     public fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private titleService: Title
   ) {
     this.form = this.fb.group({
       id: [``],
@@ -22,8 +24,14 @@ export class CreateAdComponent implements OnInit {
       description: [``],
       cost: [``],
       adCategory: [``],
-      adType: [``]
+      adType: [``],
+      photos: []
       });
+  }
+
+  addPhoto(event): void{
+    const target: any = event.target || event.srcElement;
+    this.files = target.files;
   }
 
   createAd(): void{
@@ -41,6 +49,7 @@ export class CreateAdComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Создание объявления');
   }
 
 }
