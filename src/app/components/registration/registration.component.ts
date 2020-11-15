@@ -39,6 +39,6 @@ export class RegistrationComponent implements OnInit {
     formData.append('secondName', this.formRegistration.get(`secondName`).value);
     formData.append('patronymic', this.formRegistration.get(`patronymic`).value);
     formData.append('birthday', this.formRegistration.get(`birthday`).value);
-    //this.http.post('localhost:4200/registration', formData).subscribe();
+    this.http.post<any>('http://localhost:8080/register', this.formRegistration.value).subscribe();
   }
 }

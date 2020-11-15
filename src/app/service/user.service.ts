@@ -1,9 +1,8 @@
 import {Observable} from 'rxjs';
+import {User} from '../model/user';
+import {environment} from '../../environments/environment';
 
-export interface User{
-  id: number;
-  username: string;
-}
+const  API_URL = environment.apiUrl;
 
 export class UserService{
 

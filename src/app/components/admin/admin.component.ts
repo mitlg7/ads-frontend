@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AdsService} from '../service/ads.service';
+import {AdsService} from '../../service/ads.service';
 import {Title} from '@angular/platform-browser';
 import {HttpClient} from '@angular/common/http';
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Title} from '@angular/platform-browser';
+import {AdsService} from '../../service/ads.service';
 
 @Component({
   selector: 'app-create-ad',
@@ -14,7 +15,8 @@ export class CreateAdComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private http: HttpClient,
-    private titleService: Title
+    private titleService: Title,
+    private adsService: AdsService
   ) {
     this.form = this.fb.group({
       id: [``],
@@ -43,7 +45,7 @@ export class CreateAdComponent implements OnInit {
     formData.append('adCategory', this.form.get(`adCategory`).value);
     formData.append('adType', this.form.get(`adType`).value);
 
-    this.http.post('https://mitlg.herokuapp.com/ad', formData).subscribe(
+    this.adsService.createAd(formData).subscribe(
       (response) => console.log(response),
       (error) => console.log(error));
   }

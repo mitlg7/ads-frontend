@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Ad, AdsService} from '../service/ads.service';
+import {AdsService} from '../../service/ads.service';
 import {delay} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';

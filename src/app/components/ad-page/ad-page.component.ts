@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Ad, AdsService} from '../service/ads.service';
+import {AdsService} from '../../service/ads.service';
 import {Title} from '@angular/platform-browser';
+import {Ad} from '../../model/ad';
 
 @Component({
   selector: 'app-ad-page',
