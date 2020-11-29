@@ -5,8 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 
-const  API_URL = environment.apiUrl;
-
+const API_URL: string = environment.apiUrl;
 
 @Injectable({providedIn: 'root'})
 export class UserService{

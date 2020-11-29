@@ -5,7 +5,7 @@ import {Response} from '../model/response';
 import {HttpClient} from '@angular/common/http';
 import {FormGroup} from '@angular/forms';
 
-const API_URL = environment.apiUrl;
+const API_URL: string = environment.apiUrl;
 
 @Injectable({providedIn: 'root'})
 export class ResponseService{

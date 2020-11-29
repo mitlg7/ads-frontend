@@ -7,7 +7,7 @@ import {FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 
-const API_URL = environment.apiUrl;
+const API_URL: string = environment.apiUrl;
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
