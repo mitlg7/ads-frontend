@@ -1,4 +1,4 @@
-<div *ngIf="storageService.getUser()">
+<div *ngIf="isAuthenticated">
   <div class="row" *ngIf="storageService.getUser().role.toString() == 'ADMIN'">
       <button class="col btn btn-warning" (click)="changeStatus(ad.id, 'ARCHIVE')">В архив</button>
       <button class="col btn btn-success" (click)="changeStatus(ad.id, 'ACTIVELY')">Сделать активным</button>
@@ -15,7 +15,7 @@
     <p><span class="text-warning">{{ad.adCategory}}  /  {{ad.adType}}</span></p>
     <h3 class="my-5 text-warning">{{ad.name}} <span *ngIf="isOwner()" class="badge badge-secondary">{{ad.adStatus}}</span></h3>
     <span class="">Цена: {{ad.cost}} ₽</span><br>
-    <div *ngIf="storageService.getUser()">
+    <div *ngIf="isAuthenticated">
       <button *ngIf="!isOwner()" class="btn btn-success btn-lg m-5" type="submit" data-toggle="modal" data-target="#response">
       Откликнуться!
       </button>

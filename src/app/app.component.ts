@@ -8,7 +8,7 @@ import {AuthService} from './service/auth.service';
 })
 export class AppComponent implements OnInit{
 
-  isAuthenticated = false;
+  public isAuthenticated = false;
   username: string;
   constructor(public authService: AuthService) {
   }

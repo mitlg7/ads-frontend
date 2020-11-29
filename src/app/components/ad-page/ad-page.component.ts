@@ -7,6 +7,7 @@ import {ResponseService} from '../../service/response.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {StorageService} from '../../service/storage.service';
 import {AdStatus} from '../../model/adStatus';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-ad-page',
@@ -17,6 +18,7 @@ export class AdPageComponent implements OnInit {
   public ad: Ad ;
   public id: string;
   public form: FormGroup;
+  public isAuthenticated = false;
   AdStatus: any;
   constructor(
     private fb: FormBuilder,
@@ -24,11 +26,13 @@ export class AdPageComponent implements OnInit {
     private adsService: AdsService,
     private titleService: Title,
     private responseService: ResponseService,
-    public storageService: StorageService
+    public storageService: StorageService,
+    public authService: AuthService
   ) {
+    this.isAuthenticated = this.authService.isAuthenticated();
     this.form = this.fb.group({
-      idAd: [router.url.split('/').pop()], // FIXME Пофикси это
-      username: [storageService.getUser().username],
+      idAd: [router.url.split('/').pop()],
+      username: [''],
       message: [``],
       phone: ['']
     });
@@ -45,6 +49,7 @@ export class AdPageComponent implements OnInit {
       } );
     }
   toResponse(): void {
+    this.form.setValue({ username: [this.storageService.getUser().username]});
     this.responseService.createResp(this.form).subscribe();
     window.location.reload();
   }
