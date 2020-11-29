@@ -1,7 +1,9 @@
-<div class="row" *ngIf="storageService.getUser().role.toString() == 'ADMIN'">
-    <button class="col btn btn-warning" (click)="changeStatus(ad.id, 'ARCHIVE')">В архив</button>
-    <button class="col btn btn-success" (click)="changeStatus(ad.id, 'ACTIVELY')">Сделать активным</button>
-    <button class="col btn btn-danger"  (click)="changeStatus(ad.id, 'CANCELED')">Отклонить</button>
+<div *ngIf="storageService.getUser()">
+  <div class="row" *ngIf="storageService.getUser().role.toString() == 'ADMIN'">
+      <button class="col btn btn-warning" (click)="changeStatus(ad.id, 'ARCHIVE')">В архив</button>
+      <button class="col btn btn-success" (click)="changeStatus(ad.id, 'ACTIVELY')">Сделать активным</button>
+      <button class="col btn btn-danger"  (click)="changeStatus(ad.id, 'CANCELED')">Отклонить</button>
+  </div>
 </div>
 
 <div class="container row m-4">
@@ -13,14 +15,15 @@
     <p><span class="text-warning">{{ad.adCategory}}  /  {{ad.adType}}</span></p>
     <h3 class="my-5 text-warning">{{ad.name}} <span *ngIf="isOwner()" class="badge badge-secondary">{{ad.adStatus}}</span></h3>
     <span class="">Цена: {{ad.cost}} ₽</span><br>
-    <button *ngIf="!isOwner()" class="btn btn-success btn-lg m-5" type="submit" data-toggle="modal" data-target="#response">
+    <div *ngIf="storageService.getUser()">
+      <button *ngIf="!isOwner()" class="btn btn-success btn-lg m-5" type="submit" data-toggle="modal" data-target="#response">
       Откликнуться!
-    </button>
-    <button *ngIf="isOwner()"  disabled class="btn btn-success btn-lg m-5" type="submit">
+      </button>
+      <button *ngIf="isOwner()"  disabled class="btn btn-success btn-lg m-5" type="submit">
       Это ваше объявление
-    </button>
-
-    <button class="btn btn-danger btn-sm" *ngIf="isOwner()" (click)="delete()">Удалить</button>
+      </button>
+      <button class="btn btn-danger btn-sm" *ngIf="isOwner()" (click)="delete()">Удалить</button>
+    </div>
   </div>
   <div class="container m-5" >
     <div>
