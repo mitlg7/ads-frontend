@@ -28,6 +28,7 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Профиль');
     const temp = this.router.url.split('/').pop();
     this.userService.getUserByUsername(temp)
       .subscribe(res => {

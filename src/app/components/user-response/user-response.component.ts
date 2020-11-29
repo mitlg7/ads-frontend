@@ -3,6 +3,7 @@ import {StorageService} from '../../service/storage.service';
 import {Router} from '@angular/router';
 import {ResponseService} from '../../service/response.service';
 import {Response} from '../../model/response';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-response',
@@ -12,11 +13,13 @@ import {Response} from '../../model/response';
 export class UserResponseComponent implements OnInit {
   constructor(
     public responseService: ResponseService,
+    private titleService: Title,
     private storageService: StorageService
     ) { }
 
   ngOnInit(): void {
-   this.newResponse();
+    this.titleService.setTitle('Отклики');
+    this.newResponse();
   }
 
   deleteResponse(id: bigint): void{
