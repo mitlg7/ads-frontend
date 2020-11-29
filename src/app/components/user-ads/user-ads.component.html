@@ -3,8 +3,8 @@
     <div *ngFor="let ad of adsService.ad">
       <div class="row col-12 w-100 h-7 border rounded m-3">
         <div class="col-2">
-          <img class="card-img-top" *ngIf="ad.photo" src="https://www.brdtex.com/wp-content/uploads/2019/09/no-image.png">
-          <img class="card-img-top" *ngIf="!ad.photo" src="{{ad.photo}}">
+          <img class="card-img-top" *ngIf="!ad.photo" src="https://www.brdtex.com/wp-content/uploads/2019/09/no-image.png">
+          <img class="card-img-top" *ngIf="ad.photo" src="{{ad.photo}}">
         </div>
         <div class="col-8">
           <div class="">
