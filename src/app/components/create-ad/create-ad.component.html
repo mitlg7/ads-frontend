@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container col-8">
   <form [formGroup]="form" (ngSubmit)="createAd()" >
     <h3>Создание объявления</h3>
 
     <div class="form-group">
       <label for="adType">Тип объявления:</label>
-      <select class="form-control" formControlName="adType" id="adType">
+      <select class="form-control" formControlName="adType" id="adType" required>
         <option disabled selected>Тип</option>
         <option value="BUY">Куплю</option>
         <option value="SELL">Продам</option>
@@ -14,25 +14,30 @@
 <!--      <input type="file" name="photo" (change)="addPhoto($event)"/>-->
 <!--    </div>-->
     <div class="form-group">
-      <label for="name">Название</label>
-      <input type="text" formControlName="name" class="form-control" placeholder=""/>
+      <label >Название</label>
+      <input type="text" formControlName="name" minlength="4" class="form-control" placeholder="" required/>
     </div>
     <div class="form-group">
-      <label for="description">Описание</label>
-      <textarea type="text" formControlName="description" class="form-control" ></textarea>
+      <label >Описание</label>
+      <textarea type="text" formControlName="description" minlength="5" class="form-control" required ></textarea>
     </div>
     <div class="form-group">
-      <label for="address">Адресс:</label>
-      <input type="text" formControlName="address" class="form-control" placeholder=""/>
+      <label >Адресс:</label>
+      <input type="text" formControlName="address" minlength="5" class="form-control" placeholder="" required/>
     </div>
     <div class="form-group">
-      <label for="cost">Цена</label>
-      <input type="number" min="0" max="999999999" formControlName="cost" class="form-control" placeholder=""/>
+      <label >Цена</label>
+      <input type="number" min="0" max="100000" formControlName="cost" class="form-control"
+             placeholder="" required/>
     </div>
-
     <div class="form-group">
-      <label for="adCategory">Категория:</label>
-      <select class="form-control" formControlName="adCategory" id="category">
+      <label >URL фотографии</label>
+      <input type="url" formControlName="photo" class="form-control" placeholder=""
+             required/>
+    </div>
+    <div class="form-group">
+      <label >Категория:</label>
+      <select class="form-control" formControlName="adCategory" id="category" required>
         <option disabled selected>Категория</option>
         <option value="PERSONALS">Персональные вещи</option>
         <option value="TRANSPORT">Транспорт</option>
@@ -40,7 +45,7 @@
       </select>
     </div>
     <div class="mx-auto">
-      <button type="submit" class="btn btn-primary ">Создать</button>
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Создать</button>
     </div>
   </form>
 

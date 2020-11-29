@@ -1,0 +1,32 @@
+<div class="container">
+  <div *ngIf="adsService.ad.length!=0; else empty" class="col-12">
+    <div *ngFor="let ad of adsService.ad">
+      <div class="row col-12 w-100 h-7 border rounded m-3">
+        <div class="col-2">
+          <img class="card-img-top" *ngIf="ad.photo" src="https://www.brdtex.com/wp-content/uploads/2019/09/no-image.png">
+          <img class="card-img-top" *ngIf="!ad.photo" src="{{ad.photo}}">
+        </div>
+        <div class="col-8">
+          <div class="">
+            <div class="">
+              <span class="h4">{{ad.name}}</span>
+              <span class="badge badge-warning ml-4">{{ad.adStatus}}</span>
+              <span class="float-right text-warning">Дата создания {{ad.date}}</span>
+              <br><span>Стоимость: {{ad.cost}}</span>
+            </div>
+            <div>{{ad.description}}</div>
+          </div>
+        </div>
+        <div class="col-2 ">
+          <div class="mt-2">
+            <button class="btn btn-primary w-100" routerLink="/ad/{{ad.id}}">Просмотр</button>
+            <button class="btn btn-danger w-100" (click)="delete(ad.id)">Удалить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #empty>
+  <h3>У вас пока нет объявлений</h3>
+</ng-template>

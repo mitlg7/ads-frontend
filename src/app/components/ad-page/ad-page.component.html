@@ -1,24 +1,91 @@
-<div class="container row">
-  <div class="container col">
-    <img src="">
+<div class="row" *ngIf="storageService.getUser().role.toString() == 'ADMIN'">
+    <button class="col btn btn-warning" (click)="changeStatus(ad.id, 'ARCHIVE')">В архив</button>
+    <button class="col btn btn-success" (click)="changeStatus(ad.id, 'ACTIVELY')">Сделать активным</button>
+    <button class="col btn btn-danger"  (click)="changeStatus(ad.id, 'CANCELED')">Отклонить</button>
+</div>
+
+<div class="container row m-4">
+  <div class="container col-5">
+    <img *ngIf="ad.photo" src="{{ad.photo}}" alt="">
+    <img *ngIf="!ad.photo" src="https://www.brdtex.com/wp-content/uploads/2019/09/no-image.png" alt="">
   </div>
-  <div class="container col">
-    <p><span><a href="">{{ad.adCategory}} </a></span><span> / </span><span><a href="">{{ad.adType}}</a></span></p>
-    <h3 class="my-5">{{ad.name}}</h3>
-    <span class="">Цена:{{ad.cost}} ₽</span><br>
-    <button class="btn btn-primary btn-lg m-5" type="submit">Откликнуться!</button>{{ad.adStatus}}
+  <div class="container ml-3 col-6">
+    <p><span class="text-warning">{{ad.adCategory}}  /  {{ad.adType}}</span></p>
+    <h3 class="my-5 text-warning">{{ad.name}} <span *ngIf="isOwner()" class="badge badge-secondary">{{ad.adStatus}}</span></h3>
+    <span class="">Цена: {{ad.cost}} ₽</span><br>
+    <button *ngIf="!isOwner()" class="btn btn-success btn-lg m-5" type="submit" data-toggle="modal" data-target="#response">
+      Откликнуться!
+    </button>
+    <button *ngIf="isOwner()"  disabled class="btn btn-success btn-lg m-5" type="submit">
+      Это ваше объявление
+    </button>
+
+    <button class="btn btn-danger btn-sm" *ngIf="isOwner()" (click)="delete()">Удалить</button>
   </div>
-  <div class="container" >
+  <div class="container m-5" >
     <div>
       Дата публикаци:
       <span>{{ad.date}}</span>
     </div>
+    <hr class="bg-warning">
+    <div>
+      Пользователь:
+      <span class="text-warning font-weight-bold" routerLink="/user/{{ad.username}}">
+        {{ad.username}}
+      </span>
+    </div>
+    <hr class="bg-warning">
     <div>Описание:
       <span>{{ad.description}}</span>
     </div>
+    <hr class="bg-warning">
     <div>
       Адресс:
       <span>{{ad.address}}</span>
     </div>
+    <hr class="bg-warning">
   </div>
 </div>
+
+
+
+<div class="modal fade text-dark" id="response" tabindex="-1" role="dialog" aria-labelledby="responseTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <form class="modal-content"  [formGroup]="form" (ngSubmit)="toResponse()">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Отклик на объявление</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body my-4">
+          <div class="container col-12">
+              <div class="">
+                <label>Телефон для обратной связи:</label>
+                <input type="tel" formControlName="phone" class="form-control" placeholder="" required/>
+              </div>
+              <div class="">
+                <label>Сообщение</label>
+                <textarea rows="5" required type="text" formControlName="message" class="form-control">
+
+                </textarea>
+              </div>
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+          <button type="submit" class="btn btn-success" disabled="{{form.invalid}}" >Откликнуться!</button>
+
+        </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+

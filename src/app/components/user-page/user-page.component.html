@@ -1,1 +1,41 @@
-<p>user-page works!</p>
+<div class="container row m-5">
+  <div class="col-3 w=h">
+    <img class="img-fluid img-thumbnail" src="{{user.avatar}}">
+  </div>
+  <div class="col-9">
+    <h3> {{user.username}} </h3>
+    <form [formGroup]="userForm">
+      <table class="">
+        <tbody>
+          <tr >
+            <td>Имя</td>
+            <td class="form-group"><input formControlName="firstName" value=""></td>
+          </tr>
+          <tr class="form-group">
+            <td>Фамилия</td>
+            <td><input formControlName="secondName" value=""></td>
+          </tr>
+          <tr class="form-group">
+            <td>Отчество</td>
+            <td><input formControlName="patronymic" value=""></td>
+          </tr>
+          <tr class="form-group">
+            <td>Телефон</td>
+            <td><input formControlName="phone" value=""></td>
+          </tr>
+          <tr class="form-group">
+            <td>Почта</td>
+            <td><input formControlName="email" value=""></td>
+          </tr>
+          <tr class="form-group">
+            <td>Дата рождения</td>
+            <td><input formControlName="birthday" type="date" min="1.1.1900" max="1-1-2020" value=""></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-secondary" (click)="userForm.disable(); edit=!edit">Отмена</button>
+      <button *ngIf="edit" class="btn btn-success m-2" (click)="userForm.enable();edit=!edit">Редактировать</button>
+      <button *ngIf="!edit" class="btn btn-success m-2" (click)="saveEdit()"> Сохранить</button>
+    </form>
+  </div>
+</div>

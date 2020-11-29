@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Title} from '@angular/platform-browser';
 import {AdsService} from '../../service/ads.service';
+import {StorageService} from '../../service/storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-ad',
@@ -16,38 +18,26 @@ export class CreateAdComponent implements OnInit {
     public fb: FormBuilder,
     private http: HttpClient,
     private titleService: Title,
-    private adsService: AdsService
+    private adsService: AdsService,
+    private storageService: StorageService,
+    private router: Router
   ) {
     this.form = this.fb.group({
-      id: [``],
-      userId: [``],
+      username: storageService.getUser().username,
       name: [``],
       address: [``],
       description: [``],
       cost: [``],
       adCategory: [``],
       adType: [``],
-      photos: []
+      photo: [``]
       });
   }
 
-  addPhoto(event): void{
-    const target: any = event.target || event.srcElement;
-    this.files = target.files;
-  }
-
   createAd(): void{
-    const formData: any = new FormData();
-    formData.append('name', this.form.get(`name`).value);
-    formData.append('address', this.form.get(`address`).value);
-    formData.append('description', this.form.get(`description`).value);
-    formData.append('cost', this.form.get(`cost`).value);
-    formData.append('adCategory', this.form.get(`adCategory`).value);
-    formData.append('adType', this.form.get(`adType`).value);
-
-    this.adsService.createAd(formData).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error));
+    this.adsService.createAd(this.form).subscribe(
+      (response) => this.router.navigateByUrl('/').then(() => location.reload()),
+      (error) => this.router.navigateByUrl('/').then(() => location.reload()));
   }
 
   ngOnInit(): void {

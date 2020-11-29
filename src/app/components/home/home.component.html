@@ -1,61 +1,67 @@
 <div class="mt-4">
   <div class="row">
     <div class="col-sm-3 float-left ">
-      <div class="my-3">
-        <label>Сортировка:</label>
-        <select class="custom-select mr-sm-2" id="">
-          <option selected>По умолчанию</option>
-          <option value="1">По возрастанию стоимости</option>
-          <option value="2">По убыванию стоимости</option>
-          <option value="3">Сначала новее</option>
-          <option value="3">Сначала страрее</option>
-        </select>
-      </div>
-      <div class="my-3">
-        <label>Тип объявления:</label>
-        <div class="row">
-          <div class="form-check">
-            <input type="radio" name="typeAds" value="ALL">
-            <label class="form-check-label">Все</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" name="typeAds" value="BUY">
-            <label class="form-check-label">Куплю</label>
-          </div>
-          <div class="form-check">
-            <input type="radio" name="typeAds" value="SELL">
-            <label class="form-check-label">Продам</label>
-          </div>
-        </div>
+      <form [formGroup]="formFilter" >
+<!--        <div class="my-3">-->
+<!--          <label>Сортировка:</label>-->
+<!--          <select formControlName="sort" class="custom-select mr-sm-2" id="">-->
+<!--            <option selected>По умолчанию</option>-->
+<!--            <option value="asc">По возрастанию стоимости</option>-->
+<!--            <option value="desc">По убыванию стоимости</option>-->
+<!--            <option value="new">Сначала новее</option>-->
+<!--            <option value="old">Сначала страрее</option>-->
+<!--          </select>-->
+<!--        </div>-->
+        <div class="my-3">
+          <label>Тип объявления:</label>
+          <div class="row">
+            <div class="form-check">
 
-      </div>
-      <div class="my-3">
-        <label>Категория объявления:</label>
-        <select class="custom-select mr-sm-2">
-          <option selected>Все</option>
-          <option value="TRANSPORT">Транспорт</option>
-          <option value="PERSONALS">Личные вещи</option>
-          <option value="PROPERTY">Недвижимость</option>
-        </select>
-      </div>
-      <div class="my-3">
-        <label>Стоимость:</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">от</span>
-          </div>
-          <input type="text" class="form-control" name="minPrice">
-          <input type="text" class="form-control" name="maxPrice">
-          <div class="input-group-append">
-            <span class="input-group-text">до</span>
-          </div>
-        </div>
+              <label class="form-check-label">
+                <input type="radio" formControlName="adType" value="BUY">
+                Куплю
+              </label>
+            </div>
+            <div class="form-check">
 
-      </div>
-      <div class="my-3">
-        <button class="btn btn-lg btn-primary">Показать</button>
-      </div>
+              <label class="form-check-label">
+                <input type="radio" formControlName="adType" value="SELL">
+                Продам
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="my-3">
+          <label>Категория объявления:</label>
+          <select formControlName="adCategory" class="custom-select mr-sm-2">
+            <option selected disabled>Все</option>
+            <option value="TRANSPORT">Транспорт</option>
+            <option value="PERSONALS">Личные вещи</option>
+            <option value="PROPERTY">Недвижимость</option>
+          </select>
+        </div>
+        <div class="my-3">
+          <label>Стоимость:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">от</span>
+            </div>
+            <input type="text" class="form-control" formControlName="minCost">
+            <input type="text" class="form-control" formControlName="maxCost">
+            <div class="input-group-append">
+              <span class="input-group-text">до</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="my-3 row">
+          <button class="col m-2 btn btn-lg btn-secondary" (click)="clearFilter()">Сброс</button>
+          <button class="col m-2 btn btn-lg btn-warning"(click)="filer()">Показать</button>
+        </div>
+      </form>
     </div>
+
     <div class="col-sm-9 float-right">
       <app-ad-card></app-ad-card>
     </div>

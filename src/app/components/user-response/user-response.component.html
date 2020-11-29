@@ -1,0 +1,56 @@
+<div class="container m-2 mt-3">
+  <div class="row">
+    <div class="col-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" (click)="newResponse()" id="v-pills-new-tab" data-toggle="pill" href="#v-pills-new" role="tab" aria-controls="v-pills-new" aria-selected="true">
+          Новые
+        </a>
+        <a class="nav-link" (click)="allResponse()" id="v-pills-all-tab" data-toggle="pill" href="#v-pills-all" role="tab" aria-controls="v-pills-all" aria-selected="false">
+          Все
+        </a>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-new" role="tabpanel" aria-labelledby="v-pills-new-tab">
+          <div *ngIf="responseService.response.length; else empty">
+          <div  id="response{{response.id}}"class="col-12 row border rounded m-3" *ngFor="let response of responseService.response">
+            <div class="col-8">
+              <div>{{response.username}} \\ {{response.date}}</div>
+              <div>Телефон для связи {{response.phone}}</div>
+              <div class="container">
+                {{response.message}}
+              </div>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-warning w-100" routerLink="/ad/{{response.idAd}}">К объявлению</button>
+              <button class="btn btn-primary w-100" (click)="readResponse(response.id)">Прочитано</button>
+              <button class="btn btn-danger w-100" (click)="deleteResponse(response.id)">Удалить</button>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-all" role="tabpanel" aria-labelledby="v-pills-all-tab">
+          <div *ngIf="responseService.response.length; else empty">
+          <div class="col-12 row border rounded m-3" *ngFor="let response of responseService.response">
+            <div class="col-8">
+              <div>{{response.username}} \\ {{response.date}}</div>
+              <div>Телефон для связи {{response.phone}}</div>
+              <div class="container">
+                {{response.message}}
+              </div>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-warning w-100" routerLink="/ad/{{response.idAd}}">К объявлению</button>
+              <button class="btn btn-danger w-100" (click)="deleteResponse(response.id)">Удалить</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #empty>Ничего нет</ng-template>

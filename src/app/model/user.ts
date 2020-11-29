@@ -7,7 +7,7 @@ export class User{
     this.role = data.role;
   }
 
-  id: bigint;
+  id: number;
   username: string;
   email: string;
   phone: string;

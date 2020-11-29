@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Title} from '@angular/platform-browser';
+import {AuthService} from '../../service/auth.service';
+import {User} from '../../model/user';
+import {StorageService} from '../../service/storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -10,10 +14,14 @@ import {Title} from '@angular/platform-browser';
 })
 export class RegistrationComponent implements OnInit {
   formRegistration: FormGroup;
-
+  public errorMessage: '';
+  public errorFlag = false;
   constructor(public fb: FormBuilder,
               private http: HttpClient,
-              private titleService: Title
+              private titleService: Title,
+              private authService: AuthService,
+              private storageService: StorageService,
+              private router: Router
   ) {
     this.formRegistration = this.fb.group({
       username: [``],
@@ -22,7 +30,9 @@ export class RegistrationComponent implements OnInit {
       firstName: [``],
       secondName: [``],
       patronymic: [``],
-      birthday: [``]
+      birthday: [``],
+      avatar: [``],
+      phone: [``]
     });
   }
 
@@ -31,14 +41,15 @@ export class RegistrationComponent implements OnInit {
   }
 
   registration(): void {
-    const formData: any = new FormData();
-    formData.append('username', this.formRegistration.get(`username`).value);
-    formData.append('password', this.formRegistration.get(`password`).value);
-    formData.append('email', this.formRegistration.get(`email`).value);
-    formData.append('firstName', this.formRegistration.get(`firstName`).value);
-    formData.append('secondName', this.formRegistration.get(`secondName`).value);
-    formData.append('patronymic', this.formRegistration.get(`patronymic`).value);
-    formData.append('birthday', this.formRegistration.get(`birthday`).value);
-    this.http.post<any>('http://localhost:8080/register', this.formRegistration.value).subscribe();
+   this.authService.register(this.formRegistration).subscribe(response => {
+        this.storageService.saveToken(response.token);
+        this.storageService.saveUser(new User(response));
+        this.router.navigate(['/']);
+      },
+      (error) =>  {
+     this.errorFlag = true;
+     this.errorMessage = error.error;
+      }
+  );
   }
 }

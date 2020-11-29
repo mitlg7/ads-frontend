@@ -1,13 +1,15 @@
+import {AdStatus} from './adStatus';
+
 export interface Ad{
   id: number;
-  userId: number;
+  username: string;
   name: string;
   address: string;
   description: string;
   cost: number;
   date?: any;
-  adStatus: string;
+  adStatus: AdStatus;
   adCategory: string;
   adType: string;
-  photos: string[];
+  photo: string;
 }

@@ -1,28 +1,37 @@
 <div class="container">
   <div class="input-group">
-    <input type="search" class="form-control" name="searchQuery"  id="search-input" autofocus="autofocus">
+    <input type="search" class="form-control" name="searchQuery" [(ngModel)]="query" id="search-input" autofocus="autofocus">
     <div class="input-group-append">
-      <button class="btn btn-primary" (click)="search()" type="submit">Поиск</button>
-      {{adsService.ads.length}}
-    </div>
+        <button class="btn btn-warning" (click)="search()" type="submit">Поиск</button>
+          </div>
   </div>
 </div>
 
-<div *ngIf="!loading">
-  <div class="card-columns" *ngIf="adsService.ads.length; else empty">
-    <div *ngFor="let ad of adsService.ads" class="card text-white bg-dark m-1 mb-3" style="width: 18rem;">
-      <img class="card-img-top" src="https://artmisto.com/uploads/posts/2012-09/1346589125_stock-prophet.jpg" alt="Film preview">
-      <div class="card-body">
+<div *ngIf="!adsService.loading" class="container mt-4">
+  <div class="card-columns" *ngIf="adsService.ad.length; else empty">
+    <div *ngFor="let ad of adsService.ad | paginate: { itemsPerPage: 12, currentPage: p }" routerLink="/ad/{{ad.id}}" class="card text-white bg-dark m-1 mb-3" style="width: 15rem;">
+      <img class="card-img-top" *ngIf="ad.photo==null" src="https://www.brdtex.com/wp-content/uploads/2019/09/no-image.png">
+      <img class="card-img-top" *ngIf="ad.photo!=null" src="{{ad.photo}}">
+
+      <div class="card-body ">
         <h5 class="card-title">{{ad.name}} </h5>
-        <br/>
-        <a>Тип: {{ad.adType}} </a> <br/>
-        <h4>Категория: {{ad.adCategory}}</h4>
-        <a routerLink="/ad/{{ad.id}}" class="btn btn-primary">Открыть</a>
+        <span>Цена: {{ad.cost}}</span>
+
+<!--        <span><a routerLink="/{{ad.adType}}">{{ad.adType}}</a> /<a routerLink="{{ad.adCategory}}">{{ad.adCategory}}</a></span>-->
+<!--        <a routerLink="/ad/{{ad.id}}" class="btn btn-primary">Открыть</a>-->
       </div>
     </div>
+
+  </div>
+  <div *ngIf="adsService.ad.length" class="mx-auto col">
+    <pagination-controls (pageChange)="p = $event"
+                         previousLabel="Назад"
+                         nextLabel="Далее"
+                         autoHide="true">
+    </pagination-controls>
   </div>
 </div>
-<h3 *ngIf="loading">
+<h3 *ngIf="adsService.loading">
   Загрузка...
 </h3>
 <ng-template #empty>
