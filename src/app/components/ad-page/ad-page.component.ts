@@ -53,7 +53,7 @@ export class AdPageComponent implements OnInit {
     }
   toResponse(): void {
     this.responseService.createResp(this.form).subscribe();
-    window.location.reload();
+    // window.location.reload();
   }
     // FIXME Сделать страницу ошибки при null
 
