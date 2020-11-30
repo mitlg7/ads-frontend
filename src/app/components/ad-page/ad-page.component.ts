@@ -60,7 +60,7 @@ export class AdPageComponent implements OnInit {
     window.location.reload();
   }
   isOwner(): boolean{
-    if (this.isAuthenticated){
+    if (!this.isAuthenticated){
       return false;
     }
     return this.storageService.getUser().username === this.ad.username;
