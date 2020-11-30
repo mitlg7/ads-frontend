@@ -55,7 +55,7 @@
 
 <div class="modal fade text-dark" id="response" tabindex="-1" role="dialog" aria-labelledby="responseTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <form class="modal-content"  [formGroup]="form" (ngSubmit)="toResponse()">
+    <form class="modal-content"  [formGroup]="form">
 
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Отклик на объявление</h5>
@@ -81,7 +81,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <button type="submit" class="btn btn-success" >Откликнуться!</button>
+          <button type="submit" class="btn btn-success" (click)="toResponse()" >Откликнуться!</button>
 
         </div>
     </form>
