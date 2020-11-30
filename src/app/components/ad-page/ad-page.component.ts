@@ -50,6 +50,7 @@ export class AdPageComponent implements OnInit {
     }
   toResponse(): void {
     this.form.setValue({ username: [this.storageService.getUser().username]});
+    this.form.setValue({ idAd: [this.router.url.split('/').pop()]});
     this.responseService.createResp(this.form).subscribe();
     window.location.reload();
   }
