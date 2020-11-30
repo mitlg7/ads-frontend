@@ -53,7 +53,7 @@
 
 
 
-<div class="modal fade text-dark" id="response" tabindex="-1" role="dialog" aria-labelledby="responseTitle" aria-hidden="true">
+<div *ngIf="isAuthenticated" class="modal fade text-dark" id="response" tabindex="-1" role="dialog" aria-labelledby="responseTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <form class="modal-content"  [formGroup]="form">
 

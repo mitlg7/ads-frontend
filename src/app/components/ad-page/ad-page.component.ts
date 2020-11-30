@@ -30,12 +30,15 @@ export class AdPageComponent implements OnInit {
     public authService: AuthService
   ) {
     this.isAuthenticated = this.authService.isAuthenticated();
-    this.form = this.fb.group({
-      idAd: [router.url.split('/').pop()],
-      username: [''],
-      message: [``],
-      phone: ['']
-    });
+    if ( this.isAuthenticated){
+      this.form = this.fb.group({
+        idAd: [router.url.split('/').pop()],
+        username: [this.storageService.getUser().username],
+        message: [``],
+        phone: ['']
+      });
+    }
+
   }
 
   ngOnInit(): void {
@@ -49,8 +52,6 @@ export class AdPageComponent implements OnInit {
       } );
     }
   toResponse(): void {
-    this.form.setValue({ username: [this.storageService.getUser().username]});
-    this.form.setValue({ idAd: [this.router.url.split('/').pop()]});
     this.responseService.createResp(this.form).subscribe();
     window.location.reload();
   }
