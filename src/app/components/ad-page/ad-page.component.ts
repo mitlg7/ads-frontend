@@ -52,14 +52,12 @@ export class AdPageComponent implements OnInit {
       } );
     }
   toResponse(): void {
-    this.responseService.createResp(this.form).subscribe();
-    // window.location.reload();
+    this.responseService.createResp(this.form).subscribe(res => window.location.reload());
   }
     // FIXME Сделать страницу ошибки при null
 
   changeStatus(id: number, adStatus: string): void{
-    this.adsService.changeStatusAd(id, adStatus).subscribe();
-    window.location.reload();
+    this.adsService.changeStatusAd(id, adStatus).subscribe(res => window.location.reload());
   }
   isOwner(): boolean{
     if (!this.isAuthenticated){
