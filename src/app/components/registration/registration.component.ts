@@ -48,7 +48,7 @@ export class RegistrationComponent implements OnInit {
       },
       (error) =>  {
      this.errorFlag = true;
-     this.errorMessage = error.error[0];
+     this.errorMessage = error.error;
       }
   );
   }

@@ -38,13 +38,14 @@
         <div class="form-group">
           <label for="avatar">URL фотографии профиля: </label>
           <input type="text" formControlName="avatar" class="form-control" id="avatar"
-                 placeholder='' minlength="1" required/>
+                 placeholder='' minlength="1" required=""/>
+          <small *ngIf="formRegistration.get('avatar').valid">SSSSSS</small>
 
         </div>
         <div class="form-group">
           <label for="firstName">Имя: </label>
           <input type="text" formControlName="firstName" class="form-control" id="firstName"
-                 placeholder='' minlength="2" maxlength="48"required/>
+                 placeholder='' minlength="2" maxlength="48" required/>
           <small>От 2 до 48 символов</small>
         </div>
         <div class="form-group">
