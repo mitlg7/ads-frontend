@@ -39,7 +39,6 @@
           <label for="avatar">URL фотографии профиля: </label>
           <input type="text" formControlName="avatar" class="form-control" id="avatar"
                  placeholder='' minlength="1" required=""/>
-          <small *ngIf="formRegistration.get('avatar').valid">SSSSSS</small>
 
         </div>
         <div class="form-group">
@@ -74,7 +73,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-lg m-auto" [disabled]="formRegistration.valid">Регистрация</button>
+    <button type="submit" class="btn btn-primary btn-lg m-auto" [disabled]="formRegistration.invalid">Регистрация</button>
     <a routerLink="/"> На главную</a>
   </form>
 </div>
