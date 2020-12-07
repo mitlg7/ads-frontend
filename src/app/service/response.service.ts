@@ -23,7 +23,7 @@ export class ResponseService{
     );
   }
   getByAdId(id: bigint): void{
-    this.http.get<Response[]>(API_URL + `/response/ad?id=` + id).subscribe(
+    this.http.get<Response[]>(API_URL + `/response/item?id=` + id).subscribe(
       data => this.response = data
     );
   }

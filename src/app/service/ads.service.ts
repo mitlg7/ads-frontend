@@ -16,7 +16,7 @@ export class AdsService{
   }
 
   getAllAds(): void {
-    this.http.get<Ad[]>(API_URL + `/ad/all/`).subscribe(
+    this.http.get<Ad[]>(API_URL + `/item/all/`).subscribe(
       data => {
         this.ad = data;
         this.loading = false;
@@ -25,11 +25,11 @@ export class AdsService{
   }
 
   getAd(id: string): Observable<Ad>{
-    return this.http.get<Ad>(API_URL + `/ad/` + id);
+    return this.http.get<Ad>(API_URL + `/item/` + id);
   }
 
   getAdBySearch(query: string): void{
-    this.http.get<Ad[]>(API_URL + `/ad/search?name=` + query).subscribe(
+    this.http.get<Ad[]>(API_URL + `/item/search?name=` + query).subscribe(
       data => {
         this.ad = data;
         this.loading = false;
@@ -38,7 +38,7 @@ export class AdsService{
   }
 
   getAdsByUsername(username: string): void{
-    this.http.get<Ad[]>(API_URL + '/user/' + username + '/ads').subscribe(
+    this.http.get<Ad[]>(API_URL + '/user/' + username + '/items').subscribe(
       data => {
         this.ad = data;
         this.loading = false;
@@ -52,7 +52,7 @@ export class AdsService{
         delete filterForm.value[key];
       }
     });
-    this.http.get<Ad[]>(API_URL + `/ad/all`, {params: filterForm.value})
+    this.http.get<Ad[]>(API_URL + `/item/all`, {params: filterForm.value})
       .subscribe(
         (data) => {
           if (data.length){
@@ -65,16 +65,16 @@ export class AdsService{
   }
 
   createAd(form: FormGroup): Observable<any>{
-    return this.http.post<any>( API_URL + `/ad`, form.value);
+    return this.http.post<any>( API_URL + `/item`, form.value);
   }
 
   deleteAd(id: number): Observable<any>{
     this.ad = this.ad.filter(ad => ad.id !== id);
-    return this.http.delete(API_URL + '/ad/' + id);
+    return this.http.delete(API_URL + '/item/' + id);
   }
 
   changeStatusAd(adId: number, adStatus: string): Observable<any>{
-    return this.http.put<any>( API_URL + '/ad/set/status', { adId, adStatus });
+    return this.http.put<any>( API_URL + '/item/set/status', { adId, adStatus });
   }
 
 
