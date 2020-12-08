@@ -66,6 +66,7 @@ export class AdPageComponent implements OnInit {
     return this.storageService.getUser().username === this.ad.username;
   }
   isActiveAd(): boolean{
+    console.log(this.ad.adStatus);
     return this.ad.adStatus === AdStatus.ACTIVELY;
   }
   delete(): void{
