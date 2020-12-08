@@ -67,7 +67,7 @@ export class AdPageComponent implements OnInit {
   }
   isActiveAd(): boolean{
     console.log(this.ad.adStatus);
-    return this.ad.adStatus === AdStatus.ACTIVELY;
+    return this.ad.adStatus.toString() === `ACTIVELY`;
   }
   delete(): void{
     this.adsService.deleteAd(this.ad.id).subscribe();
