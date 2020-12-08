@@ -18,11 +18,10 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Admin панель');
-    this.adsService.getAllAds();
+    this.adsService.getAllAdsByAdmin();
   }
 
   delete(id: number): void{
-    // TODO проверить сервис на фронте
     this.adsService.deleteAd(id).subscribe();
   }
 

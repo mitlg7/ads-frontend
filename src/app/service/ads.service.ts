@@ -24,6 +24,15 @@ export class AdsService{
     );
   }
 
+  getAllAdsByAdmin(): void{
+    this.http.get<Ad[]>(API_URL + `/item/admin/all`).subscribe(
+      data => {
+        this.ad = data;
+        this.loading = false;
+      }
+    );
+  }
+
   getAd(id: string): Observable<Ad>{
     return this.http.get<Ad>(API_URL + `/item/` + id);
   }

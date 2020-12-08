@@ -17,7 +17,7 @@
       <span *ngIf="isOwner()" class="badge badge-secondary">{{ad.adStatus}}</span></h3>
     <span class="">Цена: {{ad.cost}} ₽</span><br>
     <div *ngIf="isAuthenticated">
-      <button *ngIf="!isOwner()" class="btn btn-success btn-lg m-5" type="submit" data-toggle="modal" data-target="#response">
+      <button *ngIf="!isOwner()&isActiveAd()" class="btn btn-success btn-lg m-5" type="submit" data-toggle="modal" data-target="#response">
       Откликнуться!
       </button>
       <button *ngIf="isOwner()"  disabled class="btn btn-success btn-lg m-5" type="submit">
