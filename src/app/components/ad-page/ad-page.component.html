@@ -14,13 +14,13 @@
   <div class="container ml-3 col-6">
     <p><span class="text-warning">{{ad.adCategory}}  /  {{ad.adType}}</span></p>
     <h3 class="my-5 text-warning">{{ad.name}}
-      <span *ngIf="isOwner()" class="badge badge-secondary">{{ad.adStatus}}</span></h3>
+      <span *ngIf="isOwner() || storageService.getUser().role.toString() == 'ADMIN' " class="badge badge-secondary">{{ad.adStatus}}</span></h3>
     <span class="">Цена: {{ad.cost}} ₽</span><br>
     <div *ngIf="isAuthenticated">
       <button *ngIf="isActiveAd() && !isOwner()" class="btn btn-success btn-lg m-5" type="submit" data-toggle="modal" data-target="#response">
       Откликнуться!
       </button>
-      <button *ngIf="isOwner()"  disabled class="btn btn-success btn-lg m-5" type="submit">
+      <button *ngIf="isOwner()"  disabled class="btn btn-success   btn-lg m-5" type="submit">
       Это ваше объявление
       </button>
       <button class="btn btn-danger btn-sm" *ngIf="isOwner()" (click)="delete()">Удалить</button>
@@ -67,11 +67,11 @@
           <div class="container col-12">
               <div class="">
                 <label>Телефон для обратной связи:</label>
-                <input type="tel" formControlName="phone" class="form-control" placeholder="" required/>
+                <input type="text" formControlName="phone" class="form-control" placeholder="" required/>
               </div>
               <div class="">
                 <label>Сообщение</label>
-                <textarea rows="5" required type="text" formControlName="message" class="form-control">
+                <textarea rows="5"  type="text" formControlName="message" class="form-control" required>
 
                 </textarea>
               </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <button type="submit" class="btn btn-success" (click)="toResponse()" >Откликнуться!</button>
+          <button type="submit" class="btn btn-success" (click)="toResponse()" [disabled]="form.invalid" >Откликнуться!</button>
 
         </div>
     </form>

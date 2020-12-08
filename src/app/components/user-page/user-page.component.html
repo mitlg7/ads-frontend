@@ -33,9 +33,11 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-secondary" (click)="userForm.disable(); edit=!edit">Отмена</button>
-      <button *ngIf="edit" class="btn btn-success m-2" (click)="userForm.enable();edit=!edit">Редактировать</button>
-      <button *ngIf="!edit" class="btn btn-success m-2" (click)="saveEdit()"> Сохранить</button>
+      <div *ngIf="isOwner()">
+        <button class="btn btn-secondary" (click)="userForm.disable(); edit=!edit">Отмена</button>
+        <button *ngIf="edit" class="btn btn-success m-2" (click)="userForm.enable();edit=!edit">Редактировать</button>
+        <button *ngIf="!edit" class="btn btn-success m-2" (click)="saveEdit()"> Сохранить</button>
+      </div>
     </form>
   </div>
 </div>

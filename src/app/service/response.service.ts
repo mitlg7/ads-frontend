@@ -18,7 +18,7 @@ export class ResponseService{
     );
   }
   getForUsernameNew(username: string): void{
-    this.http.get<Response[]>(API_URL + `/response/user/new?username=`+ username).subscribe(
+    this.http.get<Response[]>(API_URL + `/response/user/new?username=` + username).subscribe(
       data => this.response = data
     );
   }

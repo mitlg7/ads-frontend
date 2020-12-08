@@ -6,6 +6,7 @@ import {UserService} from '../../service/user.service';
 import {User} from '../../model/user';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {StorageService} from '../../service/storage.service';
 
 @Component({
   selector: 'app-user-page',
@@ -23,6 +24,7 @@ export class UserPageComponent implements OnInit {
     private titleService: Title,
     private userService: UserService,
     private router: Router,
+    public storageService: StorageService,
     private builder: FormBuilder
   ) {
   }
@@ -46,6 +48,13 @@ export class UserPageComponent implements OnInit {
       }, () => {
         this.router.navigateByUrl('/not-found');
       } );
+  }
+
+  isOwner(): boolean{
+    if (!this.authService.isAuthenticated()){
+      return false;
+    }
+    return this.storageService.getUser().username === this.user.username;
   }
 
   saveEdit(): void{

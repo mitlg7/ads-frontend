@@ -2,7 +2,8 @@
   <div class="input-group">
     <input type="search" class="form-control" name="searchQuery" [(ngModel)]="query" id="search-input" autofocus="autofocus">
     <div class="input-group-append">
-        <button class="btn btn-warning" (click)="search()" type="submit">Поиск</button>
+        <button class="btn btn-warning"  type="submit"><a class="text-dark" href="/search?name={{this.query}}">Поиск</a></button>
+      <button class="btn btn-secondary" routerLink="/"> Отмена</button>
           </div>
   </div>
 </div>

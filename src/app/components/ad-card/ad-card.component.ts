@@ -20,14 +20,17 @@ export class AdCardComponent implements OnInit {
     this.titleService.setTitle('Alito 64');
      // FIXME Сделать норм парсинг сеарч
 
-    if (this.router.url.indexOf('search') != -1){
+    if (this.router.url.indexOf('search') !== -1){
       const query = this.router.url.split('name=').pop();
+
       this.adsService.getAdBySearch(query);
     }else {
       this.adsService.getAllAds();
     }
   }
   search(): void {
-    this.router.navigateByUrl('/search?name=' + this.query);
+    if (this.query !== ''){
+      this.router.navigateByUrl('/search?name=' + this.query).then(window.location.reload);
+    }
   }
 }

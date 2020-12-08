@@ -7,4 +7,6 @@ img {
 .card:hover{
   border: 4px double darkgoldenrod;
 }
-
+a{
+  text-decoration: none;
+}
