@@ -6,7 +6,6 @@ export class User{
     this.email = data.email;
     this.role = data.role;
   }
-
   id: number;
   username: string;
   email: string;
@@ -14,6 +13,7 @@ export class User{
   firstName: string;
   secondName: string;
   patronymic: string;
+  distribution: boolean;
   avatar?: string;
   birthday: string;
   role: Role;

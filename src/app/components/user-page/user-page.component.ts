@@ -43,6 +43,7 @@ export class UserPageComponent implements OnInit {
           phone: new FormControl({value: this.user.phone, disabled: true},   Validators.required),
           email: new FormControl({value: this.user.email, disabled: true},   Validators.required),
           birthday: new FormControl({value: this.user.birthday, disabled: true},   Validators.required),
+          distribution: new FormControl({value: this.user.distribution, disabled: true},   Validators.required),
         });
         this.loading = false;
       }, () => {

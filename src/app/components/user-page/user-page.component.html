@@ -31,6 +31,10 @@
             <td>Дата рождения</td>
             <td><input formControlName="birthday" type="date" min="1.1.1900" max="1-1-2020" value=""></td>
           </tr>
+          <tr class="form-group">
+            <td>Email рассылка</td>
+            <td><input formControlName="distribution" [value]="user.distribution" type="checkbox" [checked]="user.distribution"></td>
+          </tr>
         </tbody>
       </table>
       <div *ngIf="isOwner()">
